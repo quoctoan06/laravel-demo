@@ -16,6 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Admin */
 Route::get('admin/login', 'UserController@getLoginAdmin');
 Route::post('admin/login', 'UserController@postLoginAdmin');
 Route::get('admin/logout', 'UserController@logoutAdmin'); 
@@ -102,7 +103,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
 
 });
 
+/* Web pages */
 
-
+Route::get('home', 'PageController@getHomePage');
+Route::get('contact', 'PageController@getContactPage');
 
 

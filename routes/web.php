@@ -13,8 +13,12 @@
 use App\TheLoai;
 
 Route::get('/', function () {
-    return view('admin.login');
+    return view('welcome');
 });
+
+Route::get('admin/login', 'UserController@getLoginAdmin');
+Route::post('admin/login', 'UserController@postLoginAdmin');
+Route::get('admin/logout', 'UserController@logoutAdmin'); 
 
 Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'theloai'], function() {
@@ -97,6 +101,7 @@ Route::group(['prefix' => 'admin'], function() {
     });
 
 });
+
 
 
 

@@ -40,7 +40,7 @@
                         </li>
                     @else
                         <li>
-                    	<a>
+                    	<a href="user">
                     		<span class ="glyphicon glyphicon-user"></span>
                     		{{$userLogin->name}}
                     	</a>

@@ -36,13 +36,13 @@ class PageController extends Controller
     	return view('web.pages.contact');
     }
 
-    public function getNewsCategory($id) {
+    public function getNewsCategoryPage($id) {
     	$loaitin = LoaiTin::find($id);
     	$tintuc = TinTuc::where('idLoaiTin', $id)->paginate(5);
     	return view('web.pages.news_category', ['loaitin' => $loaitin, 'tintuc' => $tintuc]);
     }
 
-    public function getNews($id) {
+    public function getNewsPage($id) {
     	$tintuc = TinTuc::find($id);
     	$tinNoiBat = TinTuc::where('NoiBat', 1)->take(4)->get();
 
@@ -52,11 +52,11 @@ class PageController extends Controller
     	return view('web.pages.news', ['tintuc' => $tintuc, 'tinNoiBat' => $tinNoiBat, 'tinLienQuan' => $tinLienQuan]);
     }
 
-    public function getLogin() {
+    public function getLoginPage() {
         return view('web.pages.login');
     }
 
-    public function postLogin(Request $request) {
+    public function postLoginPage(Request $request) {
         $this->validate($request, 
             [
                 'email' => 'required|email',
@@ -84,5 +84,86 @@ class PageController extends Controller
     public function logout() {
         Auth::logout();
         return redirect('home');
+    }
+
+    public function getUserPage() {
+        return view('web.pages.user');
+    }
+
+    public function postUserPage(Request $request) {
+        $this->validate($request, 
+            [
+                'name' => 'required|min:3'
+            ], 
+            [
+                'name.required' => 'Bạn chưa nhập tên đăng nhập',
+                'name.min' => 'Tên đăng nhập phải có độ dài ít nhất 3 kí tự'
+            ]);
+
+        $user = Auth::user();
+        $user->name = $request->name;
+
+        // nếu người dùng đổi mật khẩu
+        if($request->changePassword == 'on') {
+
+             $this->validate($request, 
+                [
+                    'password' => 'required|min:3|max:32',
+                    'passwordAgain' => 'required|same:password'
+                ], 
+                [
+
+                    'password.required' => 'Bạn chưa nhập mật khẩu',
+                    'password.min' => 'Mật khẩu phải có độ dài từ 3 đến 32 kí tự',
+                    'password.max' => 'Mật khẩu phải có độ dài từ 3 đến 32 kí tự',
+
+                    'passwordAgain.required' => 'Bạn chưa nhập lại mật khẩu',
+                    'passwordAgain.same' => 'Mật khẩu nhập lại chưa khớp'
+                ]);
+
+             $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect('user')->with('message', 'Cập nhật thành công');
+    }
+
+    public function getRegisterPage() {
+        return view('web.pages.register');
+    }
+
+    public function postRegisterPage(Request $request) {
+        $this->validate($request, 
+            [
+                'name' => 'required|min:3',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|min:3|max:32',
+                'passwordAgain' => 'required|same:password'
+            ], 
+            [
+                'name.required' => 'Bạn chưa nhập tên đăng nhập',
+                'name.min' => 'Tên đăng nhập phải có độ dài ít nhất 3 kí tự',
+
+                'email.required' => 'Bạn chưa nhập email',
+                'email.email' => 'Bạn chưa nhập đúng định dạng email',
+                'email.unique' => 'Email đã tồn tại',
+
+                'password.required' => 'Bạn chưa nhập mật khẩu',
+                'password.min' => 'Mật khẩu phải có độ dài từ 3 đến 32 kí tự',
+                'password.max' => 'Mật khẩu phải có độ dài từ 3 đến 32 kí tự',
+
+                'passwordAgain.required' => 'Bạn chưa nhập lại mật khẩu',
+                'passwordAgain.same' => 'Mật khẩu nhập lại chưa khớp'
+            ]);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->quyen = 0;
+        $user->save();
+
+        return redirect('register')->with('message', 'Đăng ký thành công');
     }
 }

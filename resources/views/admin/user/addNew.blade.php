@@ -37,7 +37,7 @@
                                 <input type="email" class="form-control" name="email" placeholder="Nhập email" />
                             </div>
                             <div class="form-group">
-                                <label>Mật khẩu</label>
+                                <label>Nhập mật khẩu</label>
                                 <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" />
                             </div>
                             <div class="form-group">

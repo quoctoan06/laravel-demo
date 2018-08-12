@@ -112,20 +112,30 @@ Route::get('home', 'PageController@getHomePage');
 Route::get('contact', 'PageController@getContactPage');
 
 // loại tin
-Route::get('news_category/{id}/{TenKhongDau}.html', 'PageController@getNewsCategory');
+Route::get('news_category/{id}/{TenKhongDau}.html', 'PageController@getNewsCategoryPage');
 
 // tin tức
-Route::get('news/{id}/{TieuDeKhongDau}.html', 'PageController@getNews');
+Route::get('news/{id}/{TieuDeKhongDau}.html', 'PageController@getNewsPage');
 
 // comment
 Route::post('comment/{idTinTuc}', 'CommentController@postComment');
 
+// user
+Route::get('user', 'PageController@getUserPage');
+Route::post('user', 'PageController@postUserPage');
+
+// register
+Route::get('register', 'PageController@getRegisterPage');
+Route::post('register', 'PageController@postRegisterPage');
+
 // login
-Route::get('login', 'PageController@getLogin');
-Route::post('login', 'PageController@postLogin');
+Route::get('login', 'PageController@getLoginPage');
+Route::post('login', 'PageController@postLoginPage');
 
 // logout
 Route::get('logout', 'PageController@logout');
+
+
 
 
 

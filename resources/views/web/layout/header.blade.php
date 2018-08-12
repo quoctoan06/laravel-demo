@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Tin Tức</a>
+                <a class="navbar-brand" href="home">Tin Tức</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -18,7 +18,7 @@
                         <a href="#">Giới thiệu</a>
                     </li>
                     <li>
-                        <a href="#">Liên hệ</a>
+                        <a href="contact">Liên hệ</a>
                     </li>
                 </ul>
 
@@ -28,25 +28,28 @@
 			        </div>
 			        <button type="submit" class="btn btn-default">Submit</button>
 			    </form>
-
+                
 			    <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <a href="#">Đăng ký</a>
-                    </li>
-                    <li>
-                        <a href="#">Đăng nhập</a>
-                    </li>
-                    <li>
+                    @if(!isset($userLogin))
+                        <li>
+                            <a href="register">Đăng ký</a>
+                        </li>
+
+                        <li>
+                            <a href="login">Đăng nhập</a>
+                        </li>
+                    @else
+                        <li>
                     	<a>
                     		<span class ="glyphicon glyphicon-user"></span>
-                    		Bùi Đức Phú
+                    		{{$userLogin->name}}
                     	</a>
-                    </li>
+                        </li>
 
-                    <li>
-                    	<a href="#">Đăng xuất</a>
-                    </li>
-                    
+                        <li>
+                            <a href="logout">Đăng xuất</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
 

@@ -114,4 +114,7 @@ Route::get('news/{id}/{TieuDeKhongDau}.html', 'PageController@getNews');
 Route::get('login', 'PageController@getLogin');
 Route::post('login', 'PageController@postLogin');
 
+// logout
+Route::get('logout', 'PageController@logout');
+
 

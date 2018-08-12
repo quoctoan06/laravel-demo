@@ -17,12 +17,11 @@ class Controller extends BaseController
 
     function __construct()
     {
-    	// $this->checkLogin();
+    	$this->middleware(function ($request, $next) {
+            if(Auth::check()) {
+                view()->share('adminLogin', Auth::user());
+            }
+            return $next($request);
+        });
     }
-
-    // public function checkLogin() {
-    // 	if(Auth::check()) {	
-    // 	 	View::share('userLogin', Auth::user());
-    // 	}
-    // }
 }

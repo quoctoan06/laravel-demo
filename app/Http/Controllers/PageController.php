@@ -18,8 +18,14 @@ class PageController extends Controller
 	{
 		$theloai = TheLoai::all();
 		$slide = Slide::all();
-
 		view()->share(['theloai' => $theloai, 'slide' => $slide]);
+
+        $this->middleware(function ($request, $next) {
+            if(Auth::check()) {
+                view()->share('userLogin', Auth::user());
+            }
+            return $next($request);
+        });
 	}
 
     public function getHomePage() {
@@ -73,5 +79,10 @@ class PageController extends Controller
 
             return redirect('login')->withErrors('Email hoặc mật khẩu sai');
         }
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('home');
     }
 }

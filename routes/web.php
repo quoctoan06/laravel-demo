@@ -105,10 +105,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
 
 /* Web pages */
 
+// trang chủ
 Route::get('home', 'PageController@getHomePage');
+
+// liên hệ
 Route::get('contact', 'PageController@getContactPage');
+
+// loại tin
 Route::get('news_category/{id}/{TenKhongDau}.html', 'PageController@getNewsCategory');
+
+// tin tức
 Route::get('news/{id}/{TieuDeKhongDau}.html', 'PageController@getNews');
+
+// comment
+Route::post('comment/{idTinTuc}', 'CommentController@postComment');
 
 // login
 Route::get('login', 'PageController@getLogin');
@@ -116,5 +126,7 @@ Route::post('login', 'PageController@postLogin');
 
 // logout
 Route::get('logout', 'PageController@logout');
+
+
 
 

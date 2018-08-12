@@ -35,20 +35,35 @@
                 <hr>
 
                 <!-- Blog Comments -->
-
+            
                 <!-- Comments Form -->
-                <div class="well">
-                    <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                    <form role="form">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                @if(isset($userLogin))
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                {{$error}}<br>
+                            @endforeach
                         </div>
-                        <button type="submit" class="btn btn-primary">Gửi</button>
-                    </form>
-                </div>
+                    @endif
 
-                <hr>
+                    @if(session('message'))
+                        <div class="alert alert-success">
+                            {{session('message')}}
+                        </div>
+                    @endif
 
+                    <div class="well">
+                        <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
+                        <form role="form" action="comment/{{$tintuc->id}}" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" name="NoiDung"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                        </form>
+                    </div>
+                    <hr>
+                @endif
                 <!-- Posted Comments -->
 
                 <!-- Comment -->

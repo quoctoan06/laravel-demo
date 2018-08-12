@@ -166,4 +166,16 @@ class PageController extends Controller
 
         return redirect('register')->with('message', 'Đăng ký thành công');
     }
+
+    public function search(Request $request) {
+        $keyword = $request->keyword;
+
+        // tìm những tin tức có tiêu đề, phần tóm tắt hoặc nội dung có chứa từ khoá
+        $tintuc = TinTuc::where('TieuDe', 'like', "%$keyword%")
+                    ->orWhere('TomTat', 'like', "%$keyword%")
+                    ->orWhere('NoiDung', 'like', "%$keyword%")
+                    ->take(30)->paginate(5);
+
+        return view('web.pages.search_result', ['tintuc' => $tintuc, 'keyword' => $keyword]);
+    }
 }

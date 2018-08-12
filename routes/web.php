@@ -135,6 +135,9 @@ Route::post('login', 'PageController@postLoginPage');
 // logout
 Route::get('logout', 'PageController@logout');
 
+// search
+Route::get('search', 'PageController@search');
+
 
 
 

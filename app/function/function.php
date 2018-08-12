@@ -77,5 +77,20 @@ function stripUnicode($str){
 	return $str;
 }
 
+ /**
+ * Highlighting matching string
+ * @param   string  $text           subject
+ * @param   string  $words          search string
+ * @return  string  highlighted text
+ */
+ function highlight($text, $words) {
+    $highlighted = preg_filter('/' . preg_quote($words, '/') . '/i', '<b><span style="color:red;">$0</span></b>', $text);
+    if (!empty($highlighted)) {
+        $text = $highlighted;
+    }
+    
+    return $text;
+}
+
 
 ?>

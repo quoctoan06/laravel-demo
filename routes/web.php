@@ -107,5 +107,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
 
 Route::get('home', 'PageController@getHomePage');
 Route::get('contact', 'PageController@getContactPage');
+Route::get('news_category/{id}/{TenKhongDau}.html', 'PageController@getNewsCategory');
+Route::get('news/{id}/{TieuDeKhongDau}.html', 'PageController@getNews');
+
+// login
+Route::get('login', 'PageController@getLogin');
+Route::post('login', 'PageController@postLogin');
 
 

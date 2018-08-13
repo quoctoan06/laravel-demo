@@ -32,21 +32,20 @@
                         
                         <div class="break"></div>
                         <h4><span class= "glyphicon glyphicon-home "></span> Địa chỉ : </h4>
-                        <p>90-92 Lê Thị Riêng, Quận 1, Bến Thành, HCM </p>
+                        <p>Q. Hai Ba Trung, Ha Noi </p>
 
                         <h4><span class="glyphicon glyphicon-envelope"></span> Email : </h4>
-                        <p>90-92 Lê Thị Riêng, Quận 1, Bến Thành, HCM </p>
+                        <p>xxxxxxxx@gmail.com </p>
 
                         <h4><span class="glyphicon glyphicon-phone-alt"></span> Điện thoại : </h4>
-                        <p>90-92 Lê Thị Riêng, Quận 1, Bến Thành, HCM </p>
+                        <p>097509xxxx </p>
 
 
 
                         <br><br>
                         <h3><span class="glyphicon glyphicon-globe"></span> Bản đồ</h3>
                         <div class="break"></div><br>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5201952559787!2d106.68891131458902!3d10.771412992324944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3c586421ef%3A0xb606461dc7627921!2zVHJ1bmcgVMOibSDEkMOgbyBU4bqhbyBUaW4gSOG7jWMgS2hvYSBQaOG6oW0!5e0!3m2!1svi!2s!4v1465285414810" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14898.441644394117!2d105.84304390592278!3d21.008248385998307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac1eb17075a1%3A0xb1f717592512c549!2zSGFpIELDoCBUcsawbmcsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1534122572938" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

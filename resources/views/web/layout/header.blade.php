@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Giới thiệu</a>
+                        <a href="home">Giới thiệu</a>
                     </li>
                     <li>
                         <a href="contact">Liên hệ</a>

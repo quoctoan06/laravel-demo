@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\LoaiTin;
 use App\TheLoai;
+use App\TinTuc;
+use App\Comment;
+use DB;
 
 class TheLoaiController extends Controller
 {
@@ -65,8 +69,27 @@ class TheLoaiController extends Controller
     }
 
     public function delete($id) {
-        $theloai = TheLoai::find($id)->delete();
+        DB::beginTransaction();
+        try {
+            $loaitinList = LoaiTin::where('idTheLoai', $id)->get();
+            foreach ($loaitinList as $loaitin) {
+                $tintucList = TinTuc::where('idLoaiTin', $loaitin->id)->get();
+                foreach ($tintucList as $tintuc) {
+                    $commentList = Comment::where('idTinTuc', $tintuc->id)->delete();
+                    TinTuc::find($tintuc->id)->delete();
+                }
+                LoaiTin::find($loaitin->id)->delete();
+            }
+            $theloai = TheLoai::find($id)->delete();
+            DB::commit();
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+        }
 
-        return redirect('admin/theloai/list')->with('message', 'Xoá thành công');
+        if ($success) {
+            return redirect('admin/theloai/list')->with('message', 'Xoá thành công');
+        }
     }
 }

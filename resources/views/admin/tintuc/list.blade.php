@@ -51,7 +51,7 @@
                                             {{'Không'}}
                                         @endif
                                     </td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/delete/{{$tt->id}}"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/delete/{{$tt->id}}" onclick="return confirm('Bạn có chắc muốn xoá?')"> Delete</a></td>
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/edit/{{$tt->id}}">Edit</a></td>
                                 </tr>
                             @endforeach

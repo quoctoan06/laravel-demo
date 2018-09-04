@@ -36,7 +36,7 @@
                                     <td>{{$lt->Ten}}</td>
                                     <td>{{$lt->TenKhongDau}}</td>
                                     <td>{{$lt->theloai->Ten}}</td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/delete/{{$lt->id}}">Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/loaitin/delete/{{$lt->id}}" onclick="return confirm('Bạn có chắc muốn xoá?')">Delete</a></td>
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/loaitin/edit/{{$lt->id}}">Edit</a></td>
                                 </tr>
                             @endforeach

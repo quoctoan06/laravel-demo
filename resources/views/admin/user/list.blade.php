@@ -42,7 +42,7 @@
                                             {{"User"}}
                                         @endif
                                     </td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/delete/{{$us->id}}"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/delete/{{$us->id}}" onclick="return confirm('Bạn có chắc muốn xoá?')"> Delete</a></td>
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/edit/{{$us->id}}">Edit</a></td>
                                 </tr>
                             @endforeach

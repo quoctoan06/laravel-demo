@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
+use App\Comment;
+use DB;
 
 class UserController extends Controller
 {
@@ -105,10 +107,20 @@ class UserController extends Controller
     }
 
     public function delete($id) {
+        DB::beginTransaction();
+        try {
+            $commentList = Comment::where('idUser', $id)->delete();
+            $user = User::find($id)->delete();
+            DB::commit();
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+        }
 
-        $user = User::find($id)->delete();
-
-        return redirect('admin/user/list')->with('message', 'Xoá thành công');
+        if ($success) {
+            return redirect('admin/user/list')->with('message', 'Xoá thành công');
+        }
     }
 
     // login

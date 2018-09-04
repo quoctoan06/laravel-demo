@@ -7,6 +7,7 @@ use App\LoaiTin;
 use App\TheLoai;
 use App\TinTuc;
 use App\Comment;
+use DB;
 
 class TinTucController extends Controller
 {
@@ -162,9 +163,19 @@ class TinTucController extends Controller
     }
 
     public function delete($id) {
+        DB::beginTransaction();
+        try {
+            $commentList = Comment::where('idTinTuc', $id)->delete();
+            $tintuc = TinTuc::find($id)->delete();
+            DB::commit();
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+        }
 
-    	$tintuc = TinTuc::find($id)->delete();
-
-    	return redirect("admin/tintuc/list")->with('message', 'Xoá thành công');
+        if ($success) {
+            return redirect("admin/tintuc/list")->with('message', 'Xoá thành công');
+        }
     }
 }

@@ -12,10 +12,6 @@
 */
 use App\TheLoai;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /* Admin */
 Route::get('admin/login', 'UserController@getLoginAdmin');
 Route::post('admin/login', 'UserController@postLoginAdmin');
@@ -106,6 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function() {
 /* Web pages */
 
 // trang chủ
+Route::get('/', 'PageController@getHomePage');
 Route::get('home', 'PageController@getHomePage');
 
 // liên hệ

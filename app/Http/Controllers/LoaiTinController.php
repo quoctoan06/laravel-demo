@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LoaiTin;
 use App\TheLoai;
+use App\TinTuc;
+use App\Comment;
+use DB;
 
 class LoaiTinController extends Controller
 {
@@ -75,8 +78,23 @@ class LoaiTinController extends Controller
     }
 
     public function delete($id) {
-        $loaitin = LoaiTin::find($id)->delete();
+        DB::beginTransaction();
+        try {
+            $tintucList = TinTuc::where('idLoaiTin', $id)->get();
+            foreach ($tintucList as $tintuc) {
+                $commentList = Comment::where('idTinTuc', $tintuc->id)->delete();
+                TinTuc::find($tintuc->id)->delete();
+            }
+            $loaitin = LoaiTin::find($id)->delete();
+            DB::commit();
+            $success = true;
+        } catch (\Exception $e) {
+            $success = false;
+            DB::rollback();
+        }
 
-        return redirect('admin/loaitin/list')->with('message', 'Xoá thành công');
+        if ($success) {
+            return redirect('admin/loaitin/list')->with('message', 'Xoá thành công');
+        }
     }
 }
